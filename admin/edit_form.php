@@ -51,6 +51,11 @@
                     $category = $customer['category_id'];
                     $image = $customer['image'];
                 }
+                $querySizes = mysqli_query($conn, "SELECT * FROM cloth_sizes WHERE cloth_id='$id'");
+                $resultSize = array();  
+                while ($sizes = mysqli_fetch_array($querySizes)) {
+                    $resultSize[] = $sizes;
+                }
               ?>
               <!-- form start -->
               <form action="edit_process.php?id=<?php echo $id ?>" method="post" id="form-add" novalidate="novalidate" enctype="multipart/form-data">
@@ -89,6 +94,87 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-group d-flex">
+                      <label for="exampleInputFile">Available Sizes</label>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="1" type="checkbox" 
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==1){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">XS</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="2" type="checkbox"
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==2){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">S</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="3" type="checkbox"
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==3){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">M</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="4" type="checkbox"
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==4){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">L</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="5" type="checkbox"
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==5){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">XL</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="6" type="checkbox"
+                        <?php 
+                          foreach ($resultSize as $sizes) {
+                            $sizeId = $sizes['size_id'];
+                            if($sizeId==6){
+                              echo "checked";
+                            }
+                          }
+                        ?>
+                        >
+                        <label class="form-check-label">XXL</label>
+                      </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
@@ -120,6 +206,55 @@
 <?php include "reusable/template/script.php" ?>
 </body>
 <script>
+$(function () {
+  $.validator.setDefaults({
+    submitHandler: function () {
+      form.submit();
+    }
+  });
+  $('#form-add').validate({
+    rules: {
+      name: {
+        required: true,
+      },
+      price: {
+        required: true,
+      },
+      category: {
+        required: true
+      },
+      type: {
+        required: true
+      }
+    },
+    messages: {
+      name: {
+        required: "Please enter a name address",
+      },
+      price: {
+        required: "Please provide a price",
+      },
+      category: {
+        required: "Please provide a category",
+      },
+      type: {
+        required: "Please provide a type",
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+
   function displayFileName(input) {
     var label = document.querySelector('.custom-file-label');
     label.textContent = input.files[0].name;

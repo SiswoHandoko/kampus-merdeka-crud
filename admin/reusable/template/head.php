@@ -20,4 +20,8 @@
     color: inherit; /* Use the parent's color */
     /* Additional styles if needed */
   }
+  .form-check-label {
+    margin-top: 3px;
+    margin-left: 16px;
+  }
 </style>

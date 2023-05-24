@@ -16,10 +16,22 @@ $name = $_POST['name'];
 $price = $_POST['price'];
 $type = $_POST['type'];
 $category = $_POST['category'];
+$sizes = $_POST["sizes"];
 
-// echo "UPDATE `clothes` SET name='$name',price='$price',tag_type='$type',category_id='$category'". $isImageExist ." WHERE id='$id';";
-// exit();
+
 $result = mysqli_query($conn, "UPDATE `clothes` SET name='$name',price='$price',tag_type='$type',category_id='$category'". $isImageExist ." WHERE id='$id';");
+if ($result) {
+
+    $deleteResult = mysqli_query($conn, "DELETE FROM cloth_sizes WHERE cloth_id='$id';");
+    foreach ($sizes as $element) {
+        echo "INSERT INTO `cloth_sizes` (`cloth_id`,`size_id`) VALUES ('$id','$element')";
+        
+        mysqli_query($conn, "INSERT INTO `cloth_sizes` (`cloth_id`,`size_id`) VALUES ('$id','$element')");
+    }
+} else {
+    echo "Error: " . mysqli_error($conn);
+    exit();
+}
 
 header("Location:index.php");
 ?>

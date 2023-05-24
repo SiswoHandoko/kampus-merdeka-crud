@@ -76,6 +76,34 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="form-group d-flex">
+                      <label for="exampleInputFile">Available Sizes</label>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="1" type="checkbox">
+                        <label class="form-check-label">XS</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="2" type="checkbox">
+                        <label class="form-check-label">S</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="3" type="checkbox">
+                        <label class="form-check-label">M</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="4" type="checkbox">
+                        <label class="form-check-label">L</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="5" type="checkbox">
+                        <label class="form-check-label">XL</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" name="sizes[]" value="6" type="checkbox">
+                        <label class="form-check-label">XXL</label>
+                      </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
